@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdio.h>
 /**
  * slidding_node - swapping nodes
  * @node: pointer to the swapping node
@@ -27,44 +26,43 @@ listint_t *slidding_node(listint_t *node, listint_t **list)
 	return (temp_node);
 }
 /**
- *cocktail_sort_list - this is a cocktail sort implementation
- *working on a double linked lists
- *@list: list
- */
+ * cocktail_sort_list - sorting the list with cock tail algorithm
+ * @list: list to be sorted
+ **/
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *node;
-	int swap_done = 1;
+	int status = 1;
+	listint_t *temp_node;
 
 	if (list == NULL || *list == NULL)
 		return;
-	node = *list;
-	while (swap_done == 1)
+	temp_node = *list;
+	while (status == 1)
 	{
-		swap_done = 0;
-		while (node->next)
+		status = 0;
+		while (temp_node->next != NULL)
 		{
-			if (node->n > node->next->n)
+			if (temp_node->n > temp_node->next->n)
 			{
-				node = slidding_node(node->next, list);
-				swap_done = 1;
+				temp_node = slidding_node(temp_node->next, list);
+				status = 1;
 				print_list(*list);
 			}
-			node = node->next;
+			temp_node = temp_node->next;
 		}
-		if (swap_done == 0)
+		if (status == 0)
 			break;
-		swap_done = 0;
-		while (node->prev)
+		status = 0;
+		while (temp_node->prev)
 		{
-			if (node->n < node->prev->n)
+			if (temp_node->n < temp_node->prev->n)
 			{
-				node = slidding_node(node, list);
-				swap_done = 1;
+				temp_node = slidding_node(temp_node, list);
+				status = 1;
 				print_list(*list);
 			}
 			else
-				node = node->prev;
+				temp_node = temp_node->prev;
 		}
 	}
 }
