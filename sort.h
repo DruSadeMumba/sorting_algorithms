@@ -37,4 +37,5 @@ void swapping_nodes(listint_t **list, listint_t *first_node,
 listint_t *second_node);
 void cocktail_checking_null(listint_t **list);
 void check_if_swapped(int status);
+listint_t *swap_node(listint_t *node, listint_t **list);
 #endif

@@ -1,87 +1,67 @@
 #include "sort.h"
+#include <stdio.h>
 /**
- * cocktail_sort_list - sorting the list with cock tail algorithm
- * @list: list to be sorted
- **/
+ *swap_node - swap a node for his previous one
+ *@node: node
+ *@list: node list
+ *Return: return a pointer to a node which was enter it
+ */
+listint_t *swap_node(listint_t *node, listint_t **list)
+{
+	listint_t *back = node->prev, *current = node;
+	/*NULL, 19, 48, 9, 71, 13, NULL*/
+
+	back->next = current->next;
+	if (current->next)
+		current->next->prev = back;
+	current->next = back;
+	current->prev = back->prev;
+	back->prev = current;
+	if (current->prev)
+		current->prev->next = current;
+	else
+		*list = current;
+	return (current);
+}
+/**
+ *cocktail_sort_list - this is a cocktail sort implementation
+ *working on a double linked lists
+ *@list: list
+ */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *temp_node;
-	int status = 1;
+	listint_t *node;
+	int swap_done = 1;
 
-	void cocktail_checking_null(listint_t **list);
-	temp_node = *list;
-	while (status == 1)
+	if (list == '\0' || (*list) == '\0' || (*list)->next == '\0')
+		return;
+	node = *list;
+	while (swap_done == 1)
 	{
-		status = 0;
-		while (temp_node->next != NULL)
+		swap_done = 0;
+		while (node->next)
 		{
-			if (temp_node->n > temp_node->next->n)
+			if (node->n > node->next->n)
 			{
-				temp_node = slidding_node(temp_node->next, list);
-				status = 1;
+				node = swap_node(node->next, list);
+				swap_done = 1;
 				print_list(*list);
 			}
-			temp_node = temp_node->next;
+			node = node->next;
 		}
-		check_if_swapped(status);
-		status = 0;
-		while (temp_node->prev)
+		if (swap_done == 0)
+			break;
+		swap_done = 0;
+		while (node->prev)
 		{
-			if (temp_node->n < temp_node->prev->n)
+			if (node->n < node->prev->n)
 			{
-				temp_node = slidding_node(temp_node, list);
-				status = 1;
+				node = swap_node(node, list);
+				swap_done = 1;
 				print_list(*list);
 			}
 			else
-				temp_node = temp_node->prev;
+				node = node->prev;
 		}
 	}
-}
-
-/**
- * cocktail_checking_null - checking for the null list
- * @list: list to be sorted
- **/
-void cocktail_checking_null(listint_t **list)
-{
-	if (*list == NULL)
-		return;
-}
-
-/**
- * check_if_swapped - checking if there was swap
- * @status: flap for checking the status
- **/
-void check_if_swapped(int status)
-{
-	if (!status)
-		return;
-}
-
-/**
- * slidding_node - swapping nodes
- * @node: pointer to the swapping node
- * @list: list of nodes to be sorted
- * Return: swapped node
- **/
-listint_t *slidding_node(listint_t *node, listint_t **list)
-{
-	listint_t *prev_node = node->prev;
-	listint_t *temp_node = node;
-
-	prev_node->next = temp_node->next;
-
-	if (temp_node->next)
-		temp_node->next->prev = prev_node;
-
-	temp_node->next = prev_node;
-	temp_node->prev = prev_node->prev;
-	prev_node->prev = temp_node;
-
-	if (temp_node->prev)
-		temp_node->prev->next = temp_node;
-	else
-		*list = temp_node;
-	return (temp_node);
 }
