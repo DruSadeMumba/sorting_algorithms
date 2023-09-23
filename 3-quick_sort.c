@@ -1,6 +1,19 @@
 #include "sort.h"
 
 /**
+ * swap - swap 2 ints
+ * @x: int 1
+ * @y: int 2
+*/
+void swap(int *x, int *y)
+{
+	int temp = *x;
+
+	*x = *y;
+	*y = temp;
+}
+
+/**
  * partition - partition array
  * @array: array
  * @size: size
