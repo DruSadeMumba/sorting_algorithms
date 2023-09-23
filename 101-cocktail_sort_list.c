@@ -1,27 +1,30 @@
 #include "sort.h"
 #include <stdio.h>
 /**
- *swap_node - swap a node for his previous one
- *@node: node
- *@list: node list
- *Return: return a pointer to a node which was enter it
- */
-listint_t *swap_node(listint_t *node, listint_t **list)
+ * slidding_node - swapping nodes
+ * @node: pointer to the swapping node
+ * @list: list of nodes to be sorted
+ * Return: swapped node
+ **/
+listint_t *slidding_node(listint_t *node, listint_t **list)
 {
-	listint_t *back = node->prev, *current = node;
-	/*NULL, 19, 48, 9, 71, 13, NULL*/
+	listint_t *prev_node = node->prev;
+	listint_t *temp_node = node;
 
-	back->next = current->next;
-	if (current->next)
-		current->next->prev = back;
-	current->next = back;
-	current->prev = back->prev;
-	back->prev = current;
-	if (current->prev)
-		current->prev->next = current;
+	prev_node->next = temp_node->next;
+
+	if (temp_node->next)
+		temp_node->next->prev = prev_node;
+
+	temp_node->next = prev_node;
+	temp_node->prev = prev_node->prev;
+	prev_node->prev = temp_node;
+
+	if (temp_node->prev)
+		temp_node->prev->next = temp_node;
 	else
-		*list = current;
-	return (current);
+		*list = temp_node;
+	return (temp_node);
 }
 /**
  *cocktail_sort_list - this is a cocktail sort implementation
@@ -43,7 +46,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (node->n > node->next->n)
 			{
-				node = swap_node(node->next, list);
+				node = slidding_node(node->next, list);
 				swap_done = 1;
 				print_list(*list);
 			}
@@ -56,7 +59,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (node->n < node->prev->n)
 			{
-				node = swap_node(node, list);
+				node = slidding_node(node, list);
 				swap_done = 1;
 				print_list(*list);
 			}
