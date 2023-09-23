@@ -10,12 +10,12 @@
  * @n: Integer stored in the node
  * @prev: Pointer to the previous element of the list
  * @next: Pointer to the next element of the list
- */
+ **/
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 void print_array(const int *array, size_t size);
@@ -33,4 +33,8 @@ void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 listint_t *slidding_node(listint_t *node, listint_t **list);
+void swapping_nodes(listint_t **list, listint_t *first_node,
+listint_t *second_node);
+void cocktail_checking_null(listint_t **list);
+void check_if_swapped(int status);
 #endif
