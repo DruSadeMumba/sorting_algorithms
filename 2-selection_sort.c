@@ -2,8 +2,8 @@
 
 /**
  * swap - swap 2 ints
- * @a: int 1
- * @b: int 2
+ * @x: int 1
+ * @y: int 2
 */
 void swap(int *x, int *y)
 {
