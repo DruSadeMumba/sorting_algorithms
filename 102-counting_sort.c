@@ -39,7 +39,7 @@ void counting_sort(int *array, size_t size)
 	max_value = find_maximum(array, size);
 
 	temp_arr = malloc(sizeof(int) * (max_value + 1));
-	if (temp_arr == NULL)
+	if (!temp_arr)
 	{
 		free(final);
 		return;
