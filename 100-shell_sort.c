@@ -21,7 +21,7 @@ void swap(int *x, int *y)
 
 void shell_sort(int *array, size_t size)
 {
-	size_t gap, i, j, n;
+	size_t gap, i, j;
 
 	if (!array || size < 2)
 		return;
@@ -34,10 +34,9 @@ void shell_sort(int *array, size_t size)
 		for (i = gap; i < size; i++)
 		{
 			j = i;
-			n = j - gap;
-			while (j >= gap && array[n] > array[j])
+			while (j >= gap && array[j - gap] > array[j])
 			{
-				swap(array + j, array + n);
+				swap(array + j, array + (j - gap));
 				j -= gap;
 			}
 		}
