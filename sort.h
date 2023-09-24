@@ -36,5 +36,5 @@ void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
 listint_t *slidding_node(listint_t *node, listint_t **list);
-
+int find_maximum(int *arr, int n);
 #endif
