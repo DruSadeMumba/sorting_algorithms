@@ -43,7 +43,7 @@ int card_compare(const void *a, const void *b)
 		return (-1);
 	else if (rankA > rankB)
 		return (1);
-	
+
 	return (0);
 }
 
