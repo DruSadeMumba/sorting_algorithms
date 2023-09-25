@@ -7,17 +7,16 @@
 */
 int value_rank(const char *value)
 {
+	int i = 0;
 	const char *values[] = {
 		"Ace", "2", "3", "4", "5", "6", "7",
 		"8", "9", "10", "Jack", "Queen", "King"
 		};
-	int i;
 
-	for (i = 0; i < 13; i++)
-	{
+	for (; i < 13; i++)
 		if (strcmp(value, values[i]) == 0)
 			return (i);
-	}
+
 	return (-1);
 }
 
@@ -36,7 +35,7 @@ int card_compare(const void *a, const void *b)
 
 	if (cardA->kind < cardB->kind)
 		return (-1);
-	if (cardA->kind > cardB->kind)
+	else if (cardA->kind > cardB->kind)
 		return (1);
 
 	if (rankA < rankB)
@@ -53,21 +52,15 @@ int card_compare(const void *a, const void *b)
 */
 void sort_deck(deck_node_t **deck)
 {
-	int count = 0, i;
+	int count = 52, i;
 	deck_node_t *current = *deck, **deck_array;
 
 	while (current)
-	{
-		count++;
 		current = current->next;
-	}
 
 	deck_array = malloc(count * sizeof(deck_node_t *));
 	if (!deck_array)
-	{
-		fprintf(stderr, "Malloc fail.\n");
 		exit(EXIT_FAILURE);
-	}
 
 	current = *deck;
 	for (i = 0; i < count; i++)
@@ -85,19 +78,4 @@ void sort_deck(deck_node_t **deck)
 	}
 	deck_array[count - 1]->next = NULL;
 	free(deck_array);
-}
-
-/**
- * print_sorted_deck - print sorted deck
- * @deck: deck
-*/
-void print_sorted_deck(deck_node_t *deck)
-{
-	while (deck)
-	{
-		printf("%s of %s\n", deck->card->value, deck->card->kind == SPADE ? "S" :
-			deck->card->kind == HEART ? "H" :
-			deck->card->kind == CLUB ? "C" : "D");
-		deck = deck->next;
-	}
 }
