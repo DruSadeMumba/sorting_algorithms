@@ -47,6 +47,8 @@ int hoare_partition(int *array, size_t size, int low, int high)
  * sort_hoare - sort using recursion
  * @array: array
  * @size: size of array
+ * @low: first idx
+ * @high: last idx
 */
 void sort_hoare(int *array, size_t size, int low, int high)
 {
