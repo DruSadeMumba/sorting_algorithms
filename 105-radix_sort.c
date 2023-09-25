@@ -23,13 +23,10 @@ int get_max(int *array, size_t size)
  * @size: size
  * @exp: digit
 */
-void count_sorting(int *array, size_t size, int exp)
+void count_sorting(int *array, size_t size, int exp, int *output)
 {
-	int *output = malloc(sizeof(int) * size), count[10] = {0};
 	size_t i;
-
-	if (!output)
-		exit(EXIT_FAILURE);
+	int count[10] = {0};
 
 	for (i = 0; i < size; i++)
 		count[(array[i] / exp) % 10]++;
@@ -53,14 +50,19 @@ void count_sorting(int *array, size_t size, int exp)
 void radix_sort(int *array, size_t size)
 {
 	int exp = 1, max = get_max(array, size);
+	int *output = malloc(sizeof(int) * size);
+
+	if (!output)
+		exit(EXIT_FAILURE);
 
 	if (!array || size < 2)
 		return;
 
 	for (; max / exp > 0; exp *= 10)
 	{
-		count_sorting(array, size, exp);
+		count_sorting(array, size, exp, output);
 		print_array(array, size);
 	}
+	free(output);
 }
 
