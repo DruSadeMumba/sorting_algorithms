@@ -25,7 +25,7 @@ int hoare_partition(int *array, size_t size, int low, int high)
 	int pivot = array[high];
 	int i = low - 1, j = high + 1;
 
-	for(; i < j;)
+	for (; i < j;)
 	{
 		do
 			i++;
@@ -51,6 +51,7 @@ int hoare_partition(int *array, size_t size, int low, int high)
 void sort_hoare(int *array, size_t size, int low, int high)
 {
 	int part_idx;
+	
 	if (low < high)
 	{
 		part_idx = hoare_partition(array, size, low, high);
