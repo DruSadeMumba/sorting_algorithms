@@ -4,6 +4,7 @@
  * get_max - get max val in array
  * @array: array
  * @size: array size
+ * Return: max
 */
 int get_max(int *array, size_t size)
 {
@@ -56,7 +57,7 @@ void radix_sort(int *array, size_t size)
 	if (!array || size < 2)
 		return;
 
-	for(; max / exp > 0; exp *= 10)
+	for (; max / exp > 0; exp *= 10)
 	{
 		count_sorting(array, size, exp);
 		print_array(array, size);
