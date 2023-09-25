@@ -51,7 +51,7 @@ int hoare_partition(int *array, size_t size, int low, int high)
 void sort_hoare(int *array, size_t size, int low, int high)
 {
 	int part_idx;
-	
+
 	if (low < high)
 	{
 		part_idx = hoare_partition(array, size, low, high);
