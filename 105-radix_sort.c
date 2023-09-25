@@ -22,6 +22,7 @@ int get_max(int *array, size_t size)
  * @array: array
  * @size: size
  * @exp: digit
+ * @output: output
 */
 void count_sorting(int *array, size_t size, int exp, int *output)
 {
