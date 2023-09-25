@@ -19,6 +19,7 @@ void swap(int *x, int *y)
  * @size: size
  * @low: first index
  * @high: last index
+ * Return: i
 */
 int hoare_partition(int *array, size_t size, int low, int high)
 {
