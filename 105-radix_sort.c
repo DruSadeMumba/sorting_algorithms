@@ -60,7 +60,7 @@ void radix_sort(int *array, size_t size)
 	if (!array || size < 2)
 		return;
 
-	for(; max / exp > 0; exp *= 10)
+	for (; max / exp > 0; exp *= 10)
 	{
 		count_sorting(array, size, exp);
 		print_array(array, size);
