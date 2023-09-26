@@ -26,7 +26,7 @@ int get_max(int *array, size_t size)
 void count_sorting(int *array, size_t size, int exp)
 {
 	int *output = malloc(sizeof(int) * size);
-	int count[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	int count[10] = {0};
 	size_t i;
 
 	if (!output)
@@ -36,7 +36,7 @@ void count_sorting(int *array, size_t size, int exp)
 	}
 	for (i = 0; i < size; i++)
 		count[(array[i] / exp) % 10]++;
-	for (i = 1; i < 10; i++)
+	for (i = 0; i < 10; i++)
 		count[i] += count[i - 1];
 	for (i = size - 1; (int)i >= 0; i--)
 	{
