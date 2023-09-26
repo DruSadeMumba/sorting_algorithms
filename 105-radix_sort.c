@@ -41,7 +41,7 @@ void count_sorting(int *array, size_t size, int exp)
 	for (i = size - 1; (int)i >= 0; i--)
 	{
 		output[count[(array[i] / exp) % 10] - 1] = array[i];
-		count[(array[i] / exp) % 10]--;
+		count[(array[i] / exp) % 10] -= 1;
 	}
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
