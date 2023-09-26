@@ -21,12 +21,17 @@ int get_max(int *array, int size)
  * @array: array
  * @size: size
  * @exp: digit
- * @output: buffer
 */
-void count_sorting(int *array, size_t size, int exp, int *output)
+void count_sorting(int *array, size_t size, int exp)
 {
-	int count[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	size_t i;
+	int *output = malloc(sizeof(int) * size), count[10] = {0};
+
+	if (!output)
+	{
+		fprintf(stderr, "Malloc fail\n");
+		exit(EXIT_FAILURE);
+	}
 
 	for (i = 0; i < size; i++)
 		count[(array[i] / exp) % 10]++;
@@ -39,6 +44,7 @@ void count_sorting(int *array, size_t size, int exp, int *output)
 	}
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
+	free(output);
 }
 
 /**
@@ -48,23 +54,15 @@ void count_sorting(int *array, size_t size, int exp, int *output)
 */
 void radix_sort(int *array, size_t size)
 {
-	int exp, max, *output;
+	int exp, max;
 
 	if (!array || size < 2)
 		return;
 
-	output = malloc(sizeof(int) * size);
-	if (!output)
-	{
-		fprintf(stderr, "Malloc fail\n");
-		exit(EXIT_FAILURE);
-	}
-
 	max = get_max(array, size);
 	for (exp = 1; max / exp > 0; exp *= 10)
 	{
-		count_sorting(array, size, exp, output);
+		count_sorting(array, size, exp);
 		print_array(array, size);
 	}
-	free(output);
 }
