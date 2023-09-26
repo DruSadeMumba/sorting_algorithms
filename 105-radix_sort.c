@@ -6,10 +6,9 @@
  * @size: array size
  * Return: max
 */
-int get_max(int *array, size_t size)
+int get_max(int *array, int size)
 {
-	size_t i = 1;
-	int max = array[0];
+	int max = array[0], i = 1;
 
 	for (; i < size; i++)
 		if (array[i] > max)
@@ -22,6 +21,7 @@ int get_max(int *array, size_t size)
  * @array: array
  * @size: size
  * @exp: digit
+ * @output: buffer
 */
 void count_sorting(int *array, size_t size, int exp, int *output)
 {
