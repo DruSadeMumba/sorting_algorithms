@@ -29,7 +29,10 @@ void count_sorting(int *array, size_t size, int exp)
 	size_t i;
 
 	if (!output)
+	{
+		fprintf(stderr, "Malloc fail\n");
 		exit(EXIT_FAILURE);
+	}
 	for (i = 0; i < size; i++)
 		count[(array[i] / exp) % 10]++;
 	for (i = 1; i < 10; i++)
